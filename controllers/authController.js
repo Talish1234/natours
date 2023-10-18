@@ -31,8 +31,13 @@ const createSendToken = (user,statusCode,res) => {
 };
 
 exports.signin = catchAsync(async (req,res,next) => {
-const newUser = await User.create(req.body);
-const url = `${req.protocol}://${req.get('host')}/me`;
+const newUser = await User.create({
+    email:req.body.email,
+    name:req.body.name,
+    password:req.body.password,
+    confirmPassword:req.body.passwordConfirm
+});
+//const url = `${req.protocol}://${req.get('host')}/me`;
 //await new Email(newUser,url).sendWelcome();
     createSendToken (newUser,201,res);
 });
