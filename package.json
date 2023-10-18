@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "node server.js"
-   },
+  },
   "dependencies": {
     "abbrev": "^1.1.1",
     "abortcontroller-polyfill": "^1.7.5",
@@ -176,6 +176,7 @@
     "ms": "^2.0.0",
     "msgpackr": "^1.9.9",
     "msgpackr-extract": "^3.0.2",
+    "multer": "^1.4.5-lts.1",
     "negotiator": "^0.6.3",
     "node-addon-api": "^5.1.0",
     "node-fetch": "^2.7.0",
@@ -289,8 +290,5 @@
     "yallist": "^4.0.0"
   },
   "author": "Mohd Talish Ansari",
-  "license": "ISC",
-  "devDependencies": {
-    "multer": "^1.4.5-lts.1"
-  }
+  "license": "ISC"
 }
