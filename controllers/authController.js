@@ -38,8 +38,8 @@ const newUser = await User.create({
     password:req.body.password,
     confirmPassword:req.body.passwordConfirm
 });
-//const url = `${req.protocol}://${req.get('host')}/me`;
-//await new Email(newUser,url).sendWelcome();
+const url = `${req.protocol}://${req.get('host')}/me`;
+await new Email(newUser,url).sendWelcome();
     createSendToken (newUser,201,res);}
     catch(err){
         console.log(err);
