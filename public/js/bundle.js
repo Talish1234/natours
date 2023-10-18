@@ -87,6 +87,7 @@ if(res.data.status === 'success'){
   },1000);
 }
 }catch(err){
+  console.log(err);
 alert('Something went worng!');
 }
 }
