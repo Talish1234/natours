@@ -26,7 +26,7 @@ const res = await axios({
 if(res.data.status === 'success'){
   alert('Logged in successfully!');
   window.setTimeout(() => {
-      location.assign('/overview');
+      location.assign('/');
   },1000);
 }
 }catch(err){
@@ -62,7 +62,7 @@ const logout = async () => {
     });
 
     if(res.data.status === 'success')
-    location.assign('/overview');
+    location.assign('/');
   }catch(err){
     alert('Error logging out! Try again.');
   }
@@ -83,7 +83,7 @@ const res = await axios({
 if(res.data.status === 'success'){
   alert('SignUp successfully!');
   window.setTimeout(() => {
-      location.assign('/overview');
+      location.assign('/');
   },1000);
 }
 }catch(err){

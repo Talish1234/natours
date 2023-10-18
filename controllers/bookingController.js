@@ -23,7 +23,7 @@ exports.getCheckoutSession = catchAsync( async (req,res,next) => {
     },quantity: 1,
   }],
         mode:'payment',
-    success_url: `${req.protocol}://${req.get('host')}/overview/?tour=${req.params.tourId}&user=${req.user.id}&price=${tour.price*40}`,
+    success_url: `${req.protocol}://${req.get('host')}/?tour=${req.params.tourId}&user=${req.user.id}&price=${tour.price*40}`,
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`
     });
 
