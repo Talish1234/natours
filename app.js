@@ -8,6 +8,7 @@ const reviewRouter = require('./Routers/reviewRouter');
 const viewRouter = require('./Routers/viewRouter');
 const bookingRouter = require('./Routers/bookingRouter');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 const mongoSanitize = require('express-mongo-sanitize');
 const xss = require('xss');
 const hpp = require('hpp');
@@ -57,6 +58,8 @@ app.use(hpp({
 }));
 app.use(cookieParser());
 // 3) ROUTES
+
+app.use(compression());
 app.use('/',viewRouter);
 app.use('/api',limiter);
 app.use('/api/v1/tours', tourRouter);

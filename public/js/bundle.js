@@ -4,11 +4,10 @@ const stripe = Stripe('pk_test_51O1C6lSJbSKgFXW5CFam6kq4fRcp3N0rdgE75sd83VhsOoaM
 
 const bookTour = async tourId =>{
   try{
-  const session = await axios(`http://localhost:3000/api/v1/booking/checkout-session/${tourId}`);
+  const session = await axios(`/api/v1/booking/checkout-session/${tourId}`);
   await stripe.redirectToCheckout({ sessionId: session.data.session.id })
   }
   catch(err){
-    console.log(err)
     alert('something went worng');
   }
 }
@@ -17,7 +16,7 @@ const login = async (email,password) => {
   try{
 const res = await axios({
   method: 'POST',
-  url:'http://localhost:3000/api/v1/users/login',
+  url:'/api/v1/users/login',
   data:{
       email,
       password
@@ -39,7 +38,7 @@ const sendReview = async (review,rating,tour,user) => {
   try{
   const res = await axios({
     method:'POST',
-    url:'http://localhost:3000/api/v1/reviews/',
+    url:'/api/v1/reviews/',
     data:{
       review,
       rating,
@@ -59,7 +58,7 @@ const logout = async () => {
   try{
     const res = await axios({
       method:'GET',
-      url:'http://localhost:3000/api/v1/users/logout'
+      url:'/api/v1/users/logout'
     });
 
     if(res.data.status === 'success')
@@ -72,7 +71,7 @@ const signup = async (name,email,password,passwordConfirm) => {
   try{
 const res = await axios({
   method: 'POST',
-  url:'http://localhost:3000/api/v1/users/signin',
+  url:'/api/v1/users/signin',
   data:{
       name,
       email,
@@ -94,7 +93,7 @@ alert('Something went worng!');
 
 const updateSettings = async (data,type) =>{
   try{
-    const url = type === 'password' ? 'http://localhost:3000/api/v1/users/updatePassword':'http://localhost:3000/api/v1/users/updateme' ;
+    const url = type === 'password' ? '/api/v1/users/updatePassword':'/api/v1/users/updateme' ;
     const res = await axios({
       method:'PATCH',
       url,
@@ -112,10 +111,9 @@ const updateSettings = async (data,type) =>{
 
 const deleteReview = async (reviewid) => {
   try{
-    console.log(reviewid)
 const res = await axios({
   method:'DELETE',
-  url:`http://localhost:3000/api/v1/reviews/${reviewid}`
+  url:`/api/v1/reviews/${reviewid}`
 });
 if(res.data.status === 'success')
 alert('Successful!');
