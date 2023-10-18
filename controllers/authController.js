@@ -8,13 +8,13 @@ const crypto = require('node:crypto');
 const { compareSync } = require('bcrypt');
 
 const signToken = id => {
-     return jwt.sign({id},process.env.JWT_SECRET,{expiresIn:process.env.JWT_EXPIRES_IN});
+     return jwt.sign({id},process.env.JWTSECRET,{expiresIn:process.env.JWTEXPIRESIN});
 };
 
 const createSendToken = (user,statusCode,res) => {
     const token = signToken(user._id);
     const cookieOptions = {
-        expires:new Date(Date.now() + process.env.JWT_COOKIE_EXPIRES_IN*24*60*60*1000),
+        expires:new Date(Date.now() + process.env.JWTCOOKIEEXPIRESIN*24*60*60*1000),
         httpOnly:true
     };
     if(process.env.NODE_ENV === 'Production')
@@ -69,7 +69,7 @@ exports.protect = catchAsync(async (req,res,next) => {
     if(!token)
     return next(new appError('You are not logged in! Please log in to get access',401));
 
-    const decode = await (jwt.verify(token, process.env.JWT_SECRET));
+    const decode = await (jwt.verify(token, process.env.JWTSECRET));
     const currentUser =  await User.findById(decode.id);
     if(!currentUser)
     return next(new appError('The user belonging to this token does no longer exist',401));
@@ -84,7 +84,7 @@ exports.protect = catchAsync(async (req,res,next) => {
 exports.isLoggedIn = catchAsync(async (req,res,next) => {
 
     if(req.cookies.jwt){
-        const decode =await jwt.verify(req.cookies.jwt, process.env.JWT_SECRET)
+        const decode =await jwt.verify(req.cookies.jwt, process.env.JWTSECRET)
     
     const currentUser =  await User.findById(decode.id);
 

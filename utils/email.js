@@ -8,15 +8,15 @@ module.exports = class Email{
     this.to = user.email;
     this.firstName = user.name.split(' ')[0];
     this.url = url;
-    this.from = process.env.EMAIL_FROM;
+    this.from = process.env.EMAILFROM;
   }
 
   newTransport(){
     return nodemailer.createTransport({
       service: 'gmail',
   auth: {
-    user: process.env.EMAIL_USERNAME,
-    pass:process.env.EMAIL_PASSWORD
+    user: process.env.EMAILUSERNAME,
+    pass:process.env.EMAILPASSWORD
   }
 })
   }
