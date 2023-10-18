@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 dotenv.config({ path: './config.env' });
 
-const DB = process.env.DATABASE.replace('<PASSWORD>',process.env.DATABASEPASSWORD);
+const DB = process.env.DATABASE;
 
 process.on('uncaughtException',err => {
   console.log('UNCAUGHT EXCEPTION Shutting down...');
